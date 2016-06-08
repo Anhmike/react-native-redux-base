@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet,
-    View,
     Image
 } from 'react-native';
 import {
@@ -17,10 +15,6 @@ export default class ActionButtonMenu extends Component {
         onTabSelect: React.PropTypes.func
     };
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <ActionButton buttonColor={COLOR_GREEN_DEFAULT}
@@ -28,11 +22,11 @@ export default class ActionButtonMenu extends Component {
             >
                 <ActionButton.Item buttonColor={COLOR_SILVER_DARK}
                                    title="Add Item"
-                                   onPress={() => this.props.onTabSelect({ name:'add-item', title: 'Add Item' })}
+                                   onPress={() => { this.props.onTabSelect({ name: 'add-item', title: 'Add Item' }); }}
                 >
                     <Image source={require('./images/add-item-icon.png')}/>
                 </ActionButton.Item>
             </ActionButton>
         );
     }
-}
+                }

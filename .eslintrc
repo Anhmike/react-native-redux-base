@@ -1,11 +1,23 @@
 {
+  // support for ES7 decorators and static variables
+  "parser": "babel-eslint",
+  "ecmaFeatures": {
+    "jsx": true
+  },
+  "env": {
+    "browser": true,
+    "mocha": true,
+    "jquery": true
+  },
+  "plugins": [
+    "react",
+    "react-native"
+  ],
   "extends": [
     "airbnb",
     "plugin:import/errors",
     "plugin:import/warnings"
   ],
-  // support for ES7 decorators and static variables
-  "parser": "babel-eslint",
   "settings":{
     "import/ignore": [
       "node_modules",
@@ -41,11 +53,10 @@
     // don't check for default exports as current version does not support module.exports = ... as default
     "import/default": 0,
     // don't prefer prefer-stateless-function
-    "react/prefer-stateless-function": 0
-  },
-  "env": {
-    "browser": true,
-    "mocha": true,
-    "jquery": true
+    "react/prefer-stateless-function": 0,
+    // unused styles in react-native
+    "react-native/no-unused-styles": 0,
+    // disallow use of variables before they are defined
+    "no-use-before-define": 0
   }
 }

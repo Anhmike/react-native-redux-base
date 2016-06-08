@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     TouchableNativeFeedback,
-    TextInput,
     Text,
     Image,
     View,
-    Dimensions,
     DatePickerAndroid
 } from 'react-native';
-import Moment from 'moment';
-import { CONTAINER_WIDTH } from '../../styles/base'
-import { COLOR_SILVER, COLOR_BLACK } from '../../styles/colors'
+import moment from 'moment';
+import { CONTAINER_WIDTH } from '../../styles/base';
+import {
+    COLOR_SILVER,
+    COLOR_BLACK
+} from '../../styles/colors';
 
 export default class InputDatePicker extends Component {
 
@@ -36,10 +37,10 @@ export default class InputDatePicker extends Component {
         DatePickerAndroid.open({
             date: new Date()
         }).then(
-            ({day, month, year, action}) => {
+            ({ day, month, year, action }) => {
                 if (action !== DatePickerAndroid.dismissedAction) {
                     this.dateSelected = true;
-                    const selectedDate = Moment(`${year}-${month}-${day}`).format('YYYY/MM/DD');
+                    const selectedDate = moment(new Date(year, month, day)).format('YYYY-MM-DD');
                     this.text = selectedDate.toString();
                     this.props.onDateSelected(selectedDate);
                 }
@@ -51,14 +52,14 @@ export default class InputDatePicker extends Component {
         return (
             <TouchableNativeFeedback onPress={(e) => { this.showDatePicker(e); }}>
                 <View style={[styles.container, !this.props.noMarginBottom && { marginBottom: 36 }]}>
-                        <Image style={styles.icon}
-                               source={this.props.icon}
-                        />
-                        <View style={styles.inputBorder}>
-                            <Text style={[styles.inputText, this.dateSelected && styles.inputTextDateSelected]}>
-                                {this.text}
-                            </Text>
-                        </View>
+                    <Image style={styles.icon}
+                           source={this.props.icon}
+                    />
+                    <View style={styles.inputBorder}>
+                        <Text style={[styles.inputText, this.dateSelected && styles.inputTextDateSelected]}>
+                            {this.text}
+                        </Text>
+                    </View>
                 </View>
             </TouchableNativeFeedback>
         );

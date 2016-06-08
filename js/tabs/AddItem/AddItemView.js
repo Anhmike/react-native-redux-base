@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import {
     StyleSheet,
-    Text,
     Image,
-    View,
-    Dimensions
+    View
 } from 'react-native';
 import Input from '../../components/Forms/Input';
 import InputDatePicker from '../../components/Forms/InputDatePicker';
-import { CONTAINER_DISTANCE_TOP, CONTAINER_DISTANCE_SIDE } from '../../styles/base'
-import { COLOR_WHITE, COLOR_GREEN_DEFAULT } from '../../styles/colors'
+import {
+    CONTAINER_DISTANCE_TOP,
+    CONTAINER_DISTANCE_SIDE
+} from '../../styles/base';
+import { COLOR_WHITE, COLOR_GREEN_DEFAULT } from '../../styles/colors';
 import ActionButton from 'react-native-action-button';
 
 export default class AddItemView extends Component {
-
-    static propTypes = {};
 
     constructor(props) {
         super(props);
@@ -38,7 +37,7 @@ export default class AddItemView extends Component {
     };
 
     handleSave = () => {
-        console.log(this.state);
+        // Handle save
     };
 
     render() {

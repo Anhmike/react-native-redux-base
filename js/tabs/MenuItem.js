@@ -32,9 +32,8 @@ export default class MenuItem extends Component {
         return (
             <TouchableNativeFeedback onPress={this.props.onPress}>
                 <View style={[styles.container, this.props.divider && styles.divider]}>
-                    <Image
-                        style={styles.icon}
-                        source={icon}
+                    <Image style={styles.icon}
+                           source={icon}
                     />
                     <Text style={[styles.title, this.props.selected && styles.selected]}>
                         {this.props.title}

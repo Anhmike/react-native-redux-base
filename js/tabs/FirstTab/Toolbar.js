@@ -10,6 +10,10 @@ import { COLOR_WHITE, COLOR_GREEN_DEFAULT } from '../../styles/colors';
 
 export default class Toolbar extends Component {
 
+    static propTypes = {
+        onPress: React.PropTypes.func
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -35,25 +39,22 @@ export default class Toolbar extends Component {
             <View style={styles.container}>
                 <TouchableNativeFeedback onPress={() => { this.onPress(0); }}>
                     <View style={[styles.button, this.state.selectedPage === 0 && styles.buttonSelected]}>
-                        <Image
-                            style={styles.icon}
-                            source={require('./images/toolbar/first-page-icon.png')}
+                        <Image style={styles.icon}
+                               source={require('./images/toolbar/first-page-icon.png')}
                         />
                     </View>
                 </TouchableNativeFeedback>
                 <TouchableNativeFeedback onPress={() => { this.onPress(1); }}>
                     <View style={[styles.button, this.state.selectedPage === 1 && styles.buttonSelected]}>
-                        <Image
-                            style={styles.icon}
-                            source={require('./images/toolbar/second-page-icon.png')}
+                        <Image style={styles.icon}
+                               source={require('./images/toolbar/second-page-icon.png')}
                         />
                     </View>
                 </TouchableNativeFeedback>
                 <TouchableNativeFeedback onPress={() => { this.onPress(2); }}>
                     <View style={[styles.button, this.state.selectedPage === 2 && styles.buttonSelected]}>
-                        <Image
-                            style={styles.icon}
-                            source={require('./images/toolbar/third-page-icon.png')}
+                        <Image style={styles.icon}
+                               source={require('./images/toolbar/third-page-icon.png')}
                         />
                     </View>
                 </TouchableNativeFeedback>

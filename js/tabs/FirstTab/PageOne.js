@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import {
     StyleSheet,
-    TouchableNativeFeedback,
-    Image,
     View,
     Text,
-    Dimensions,
     ScrollView
 } from 'react-native';
 import { COLOR_SILVER_LIGHT } from '../../styles/colors';
@@ -15,11 +12,8 @@ import {
     CONTAINER_DISTANCE_TOP,
     DISTANCE_TOP_SMALL
 } from '../../styles/base';
-export default class PageOne extends Component {
 
-    constructor(props) {
-        super(props);
-    }
+export default class PageOne extends Component {
 
     render() {
         return (

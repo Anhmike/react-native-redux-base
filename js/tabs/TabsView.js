@@ -5,8 +5,7 @@ import {
     StyleSheet,
     Image,
     Text,
-    View,
-    Dimensions
+    View
 } from 'react-native';
 import {
     COLOR_WHITE,
@@ -18,6 +17,7 @@ import SecondTabView from './SecondTab/SecondTabView';
 import MenuItem from './MenuItem';
 import ActionButtonMenu from './ActionButtonMenu';
 import AddItemView from './AddItem/AddItemView';
+import { SCREEN_WIDTH } from '../styles/base';
 
 export default class TabsView extends Component {
 
@@ -28,18 +28,18 @@ export default class TabsView extends Component {
 
     constructor(props) {
         super(props);
-        this.width = Dimensions.get('window').width;
+        this.width = SCREEN_WIDTH;
         this.showActionButtonMenu = true;
         this.state = {
             tab: this.props.initialTab
         };
     }
 
-    onTabSelect = (tab) => {
+    onTabSelect = (selectedTab) => {
         this.refs.drawer.closeDrawer();
-        if (this.state.tab.name !== tab.name) {
+        if (this.state.tab.name !== selectedTab.name) {
             this.setState({
-                tab: tab
+                tab: selectedTab
             });
         }
     };
@@ -47,14 +47,12 @@ export default class TabsView extends Component {
     renderNavigationView = () => {
         return (
             <View style={styles.drawer}>
-                <Image
-                    style={styles.drawerHeaderBackground}
-                    source={require('./images/drawer-header-bg.png')}
+                <Image style={styles.drawerHeaderBackground}
+                       source={require('./images/drawer-header-bg.png')}
                 >
                     <View style={styles.drawerHeader}>
-                        <Image
-                            style={styles.userImage}
-                            source={require('../images/test-men.jpg')}
+                        <Image style={styles.userImage}
+                               source={require('../images/test-men.jpg')}
                         />
                         <Text style={styles.userFullName}>
                             John Doe
@@ -67,13 +65,13 @@ export default class TabsView extends Component {
                 <MenuItem title="First tab"
                           icon={require('./FirstTab/images/first-tab-icon.png')}
                           selectionIcon={require('./FirstTab/images/first-tab-selected-icon.png')}
-                          onPress={ () => { this.onTabSelect({name: 'first-tab', title: 'First tab'}); }}
+                          onPress={() => { this.onTabSelect({ name: 'first-tab', title: 'First tab' }); }}
                           selected={this.state.tab.name === 'first-tab'}
                 />
                 <MenuItem title="Second tab"
                           icon={require('./SecondTab/images/second-tab-icon.png')}
                           selectionIcon={require('./SecondTab/images/second-tab-selected-icon.png')}
-                          onPress={ () => { this.onTabSelect({name: 'second-tab', title: 'Second tab'}); }}
+                          onPress={() => { this.onTabSelect({ name: 'second-tab', title: 'Second tab' }); }}
                           selected={this.state.tab.name === 'second-tab'}
                 />
             </View>
@@ -87,37 +85,40 @@ export default class TabsView extends Component {
                 return (
                     <FirstTabView navigator={this.props.navigator}/>
                 );
-                break;
+
             case 'second-tab':
                 this.showActionButtonMenu = true;
                 return (
                     <SecondTabView navigator={this.props.navigator}/>
                 );
-                break;
+
             case 'add-item':
                 this.showActionButtonMenu = false;
                 return (
                     <AddItemView navigator={this.props.navigator}/>
                 );
-                break;
+
+            default:
+                this.showActionButtonMenu = true;
+                return (
+                    <FirstTabView navigator={this.props.navigator}/>
+                );
         }
-        throw new Error(`Unknown tab ${this.props.tab.name}`);
     };
 
     render() {
         return (
-            <DrawerLayoutAndroid
-                ref={"drawer"}
-                drawerWidth={this.width - 56 <= 320 ? this.width - 56 : 320}
-                drawerPosition={DrawerLayoutAndroid.positions.Left}
-                renderNavigationView={this.renderNavigationView}>
+            <DrawerLayoutAndroid ref={"drawer"}
+                                 drawerWidth={this.width - 56 <= 320 ? this.width - 56 : 320}
+                                 drawerPosition={DrawerLayoutAndroid.positions.Left}
+                                 renderNavigationView={this.renderNavigationView}
+            >
                 <View style={styles.container}>
-                    <ToolbarAndroid
-                        title={this.state.tab.title}
-                        titleColor={COLOR_WHITE_DARK}
-                        navIcon={require('./images/drawer-icon.png')}
-                        onIconClicked={() => { this.refs.drawer.openDrawer(); }}
-                        style={styles.toolbar}
+                    <ToolbarAndroid title={this.state.tab.title}
+                                    titleColor={COLOR_WHITE_DARK}
+                                    navIcon={require('./images/drawer-icon.png')}
+                                    onIconClicked={() => { this.refs.drawer.openDrawer(); }}
+                                    style={styles.toolbar}
                     />
                     {this.renderContent()}
                     {this.showActionButtonMenu ?

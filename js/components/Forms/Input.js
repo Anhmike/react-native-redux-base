@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import {
     StyleSheet,
-    TouchableNativeFeedback,
     TextInput,
-    Text,
     Image,
-    View,
-    Dimensions
+    View
 } from 'react-native';
-import { CONTAINER_WIDTH } from '../../styles/base'
-import { COLOR_SILVER } from '../../styles/colors'
+import { CONTAINER_WIDTH } from '../../styles/base';
+import { COLOR_SILVER } from '../../styles/colors';
 
 export default class Input extends Component {
 
-    static propTypes = {};
+    static propTypes = {
+        noMarginBottom: React.PropTypes.bool,
+        icon: React.PropTypes.number,
+        placeholder: React.PropTypes.string,
+        onInputChange: React.PropTypes.func
+    };
 
     render() {
         return (
@@ -21,12 +23,11 @@ export default class Input extends Component {
                 <Image style={styles.icon}
                        source={this.props.icon}
                 />
-                <TextInput
-                    style={styles.input}
-                    placeholder={this.props.placeholder}
-                    placeholderTextColor={COLOR_SILVER}
-                    underlineColorAndroid={COLOR_SILVER}
-                    onChangeText={(text) => this.props.onInputChange({text})}
+                <TextInput style={styles.input}
+                           placeholder={this.props.placeholder}
+                           placeholderTextColor={COLOR_SILVER}
+                           underlineColorAndroid={COLOR_SILVER}
+                           onChangeText={(text) => { this.props.onInputChange(text); }}
                 />
             </View>
         );

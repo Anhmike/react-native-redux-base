@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import {
-    Text,
-    View,
     Navigator
 } from 'react-native';
 import TabsView from './tabs/TabsView';
@@ -19,17 +17,17 @@ export default class MyNavigator extends Component {
              */
         }
 
-        return <TabsView
-            navigator={navigator}
-            initialTab={{ name:'first-tab', title: 'First tab' }}
-        />;
+        return (
+            <TabsView navigator={navigator}
+                      initialTab={{ name: 'first-tab', title: 'First tab' }}
+            />
+        );
     };
 
     render() {
         return (
-            <Navigator
-                initialRoute={{}}
-                renderScene={this.renderScene}
+            <Navigator initialRoute={{}}
+                       renderScene={this.renderScene}
             />
         );
     }
