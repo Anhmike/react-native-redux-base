@@ -1,0 +1,24 @@
+{
+  "name": "ReactNativeReduxDemo",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "lintjs": "eslint -c .eslintrc js || true"
+  },
+  "dependencies": {
+    "moment": "2.13.0",
+    "react": "^15.1.0",
+    "react-native": "0.27.0",
+    "react-native-action-button": "1.1.5",
+    "react-native-select-contact-android": "0.4.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "6.0.4",
+    "eslint": "2.10.2",
+    "eslint-config-airbnb": "9.0.1",
+    "eslint-plugin-import": "1.8.0",
+    "eslint-plugin-jsx-a11y": "1.2.0",
+    "eslint-plugin-react": "5.1.1"
+  }
+}
